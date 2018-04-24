@@ -8,6 +8,7 @@ FROM alpine:3.6
 
 RUN apk -Uuv add --no-cache ca-certificates && \
     apk add groff less python py-pip && \
+    pip install awscli && \
     apk --purge -v del py-pip && \
     rm -rf /var/cache/apk/*
 COPY --from=builder /go/klar /klar
