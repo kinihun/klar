@@ -6,7 +6,8 @@ RUN go build ./src/github.com/optiopay/klar
 
 FROM alpine:3.6
 
-RUN apk add --no-cache ca-certificates && apk add --update curl && rm -rf /var/cache/apk/*
+RUN apk -Uuv add --no-cache ca-certificates && \
+    apk add groff less python py-pip curl && \
+    apk --purge -v del py-pip && \
+    rm -rf /var/cache/apk/*
 COPY --from=builder /go/klar /klar
-
-ENTRYPOINT ["/klar"]
