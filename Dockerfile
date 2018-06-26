@@ -6,7 +6,7 @@ RUN go build ./src/github.com/optiopay/klar
 
 FROM node:8-alpine
 
-RUN apk -Uuv add --no-cache ca-certificates && \
+RUN apk -Uuv add --no-cache curl ca-certificates && \
     apk add python3 && \
     python3 -m ensurepip && \
     pip3 install --upgrade pip setuptools && \
